@@ -8,6 +8,6 @@ package dev.vbms.autopilot.pain;
  *
  * @author pcmobile
  */
-public class Giro {
+public class AirframeGliderPlain {
     
 }

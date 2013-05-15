@@ -4,8 +4,9 @@
  */
 package dev.vbms.autopilot.core;
 
-import dev.vbms.autopilot.pain.Plain;
+import dev.vbms.autopilot.pain.AbstractPlain;
 import java.util.List;
+import sun.net.www.content.text.plain;
 
 /**
  *
@@ -34,7 +35,7 @@ public class Autopilot {
     static double throttelIncreasRate;
     static double throttelSteps;
     
-    Plain airoplain;
+    AbstractPlain airoplain;
     
     int state;
     
@@ -112,7 +113,7 @@ public class Autopilot {
                         // get distance
                         // get heading to objective
                         Position objectivePosition = objective.getPosition();
-                        objectivePosition
+                        objectivePosition =  null;
                     }
                     break;
                 case state_objective_complete:
@@ -139,7 +140,16 @@ public class Autopilot {
                 
             }
             
+            // estimate new position
+            FlightSimulator simulator;
+            simulator.updateIntended();
+            simulator.getHorizontalAngel();
             
+            // update flight controlles
+            airoplain.setHorizontalValue(throttelSteps);
+            airoplain.setVerticalValue(throttelSteps);
+            airoplain.setRoleValue(throttelSteps);
+            airoplain.setMotorThrottle(throttelSteps);
         }
     }
     

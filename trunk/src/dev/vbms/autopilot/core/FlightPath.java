@@ -4,16 +4,10 @@
  */
 package dev.vbms.autopilot.core;
 
-import dev.vbms.autopilot.pain.AbstractPlain;
-
 /**
  *
  * @author pcmobile
  */
-public class Context {
-    
-    public static AbstractPlain getPlain () {
-        return new AbstractPlain();
-    }
+public class FlightPath {
     
 }

@@ -13,6 +13,10 @@ public class Heading {
     Vector3d direction;
     Vector2d role;
     
+    public Vector3d getDirection () {
+        return direction;
+    }
+    
     public double getHorizontalAngle (Vector3d relative = null) {
         double angle = 0;
         if (relative == null) {

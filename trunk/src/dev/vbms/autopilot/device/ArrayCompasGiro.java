@@ -2,22 +2,21 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package dev.vbms.autopilot.pain;
+package dev.vbms.autopilot.device;
+
+import dev.vbms.autopilot.device.AbstractGiro;
 
 /**
  *
  * @author pcmobile
  */
-public class CompasGiro {
+public class ArrayCompasGiro extends AbstractGiro {
     
     AbstractCompass xCompass;
     AbstractCompass yCompass;
     AbstractCompass ZCompass;
     
     public void init () {
-        xCompass;
-        yCompass;
-        ZCompass;
     }
     
     public double getCompasHeadings () {

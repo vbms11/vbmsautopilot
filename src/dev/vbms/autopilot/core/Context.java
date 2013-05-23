@@ -13,7 +13,7 @@ import dev.vbms.autopilot.pain.AbstractPlain;
 public class Context {
     
     public static AbstractPlain getPlain () {
-        return new AbstractPlain();
+        return ((AutopilotThread)Thread.currentThread()).getPlain();
     }
     
 }

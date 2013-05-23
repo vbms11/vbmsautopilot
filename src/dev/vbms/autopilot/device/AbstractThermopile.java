@@ -4,6 +4,8 @@
  */
 package dev.vbms.autopilot.device;
 
+import dev.vbms.autopilot.math.Vector3d;
+
 /**
  *
  * @author pcmobile

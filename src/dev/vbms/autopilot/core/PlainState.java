@@ -4,6 +4,7 @@
  */
 package dev.vbms.autopilot.core;
 
+import dev.vbms.autopilot.math.Vector3d;
 import dev.vbms.autopilot.pain.AbstractPlain;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -36,10 +37,10 @@ public class PlainState {
     public PlainState getCurrentState (AbstractPlain plain, PlainState lastState = null) {
         PlainState plainState = new PlainState();
         plainState.timestamp = System.currentTimeMillis();
-        plainState.heading = plain.getCompass().getHeading();
+        plainState.heading = plain.getCompass().getReading();
         plainState.position = plain.getGps().getPosition();
         if (lastState == null) {
-            plainState.velocity = new Vector3d(0,0,0);
+            plainState.velocity = new Vector3d(0.0f,0.0f,0.0f);
             plainState.horizontalAngleSpeed = 0;
             plainState.verticalAngleSpeed = 0;
             plainState.roleSpeed = 0;
@@ -50,7 +51,7 @@ public class PlainState {
         }
     }
     
-    public static PlainState getAvarageState (long pastTimeMilis = 100) {
+    public static PlainState getAvarageState (long pastTimeMilis = 100L) {
         PlainState painState = new PlainState();
         Iterator<PlainState> itr_plainStateLog = plainStateLog.listIterator(plainStateLog.size()-1);
         do {

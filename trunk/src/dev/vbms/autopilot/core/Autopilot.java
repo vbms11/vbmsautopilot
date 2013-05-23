@@ -4,6 +4,7 @@
  */
 package dev.vbms.autopilot.core;
 
+import dev.vbms.autopilot.math.Vector2d;
 import dev.vbms.autopilot.pain.AbstractPlain;
 import java.util.List;
 import sun.net.www.content.text.plain;
@@ -23,6 +24,15 @@ public class Autopilot {
     static final int state_takeoff_gain_success = 4;
     static final int state_takeoff_gain_continue = 5;
     static final int state_takeoff_finnished = 6;
+    static final int state_objective_next = 7;
+    static final int state_objective_continue = 8;
+    static final int state_objective_complete = 9;
+    static final int state_landing_approach = 10;
+    static final int state_landing_prepear = 11;
+    static final int state_landing_estimate = 12;
+    static final int state_landing_attempt = 13;
+    static final int state_landing_abort = 14;
+    static final int state_landing_success = 15;
     
     static final int phase_takeoff = -11;
     static final int phase_objectives = -12;
@@ -35,7 +45,7 @@ public class Autopilot {
     static double throttelIncreasRate;
     static double throttelSteps;
     
-    AbstractPlain airoplain;
+    AbstractPlain plain;
     
     int state;
     
@@ -57,19 +67,57 @@ public class Autopilot {
         
         int type = 0;
         
+        double radius;
+        Position position;
+        
         public boolean isCompelete () {
+            boolean result = false;
             switch (type) {
                 case type_flyto:
-                    Position position = 
+                    Position plainPosition = ;
+                    Vector2d offset = new Vector2d(position.longditude - plainPosition.longditude, position.latitude - plainPosition.latitude);
+                    if (offset.getLength() <= radius) {
+                        result = true;
+                    }
                     break;
             }
+            return result;
         }
+
+        public int getType() {
+            return type;
+        }
+
+        public void setType(int type) {
+            this.type = type;
+        }
+
+        public double getRadius() {
+            return radius;
+        }
+
+        public void setRadius(double radius) {
+            this.radius = radius;
+        }
+
+        public Position getPosition() {
+            return position;
+        }
+
+        public void setPosition(Position position) {
+            this.position = position;
+        }
+        
+        
     }
     
     List<Objective> objectives;
     int currentObjective;
     
-    void autopilotRun () {
+    void run () {
+        
+        plain = Context.getPlain();
+        PlainConfig plainConfig = plain.getPlainConfig();
         
         long lastTime = System.currentTimeMillis();
         while (state != state_system_shutdown) {
@@ -92,8 +140,8 @@ public class Autopilot {
                     break;
                 case state_takeoff_accelerate:
                     // regulate throttle rate
-                    if (airoplain.getMotorThrott() < plainConfig.maxTakeoffAccelerateThrottle) {
-                        airoplain.setMotorThrottle(airoplain.getMotorThrott() + (interval * plainConfig.takeoffThrottleRate));
+                    if (plain.getMotorThrott() < plainConfig.maxTakeoffAccelerateThrottle) {
+                        plain.setMotorThrottle(plain.getMotorThrott() + (interval * plainConfig.takeoffThrottleRate));
                     }
                     // regulate takeoff angle
                     break;
@@ -107,7 +155,7 @@ public class Autopilot {
                     currentObjective++;
                 case state_objective_continue:
                     Objective objective = objectives.get(currentObjective);
-                    if (objective.isComplete()) {
+                    if (objective.isCompelete()) {
                         state = state_objective_complete;
                     } else {
                         // get distance
@@ -141,15 +189,15 @@ public class Autopilot {
             }
             
             // estimate new position
-            FlightSimulator simulator;
+            FlightSimulator simulator = new FlightSimulator();
             simulator.updateIntended();
             simulator.getHorizontalAngel();
             
             // update flight controlles
-            airoplain.setHorizontalValue(throttelSteps);
-            airoplain.setVerticalValue(throttelSteps);
-            airoplain.setRoleValue(throttelSteps);
-            airoplain.setMotorThrottle(throttelSteps);
+            plain.setHorizontalValue(throttelSteps);
+            plain.setVerticalValue(throttelSteps);
+            plain.setRoleValue(throttelSteps);
+            plain.setMotorThrottle(throttelSteps);
         }
     }
     

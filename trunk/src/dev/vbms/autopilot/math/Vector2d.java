@@ -8,10 +8,6 @@ package dev.vbms.autopilot.math;
  *
  * @author pcmobile
  */
-public class Vector3d {
-    public Vector3d () {
-    }
-    public Vector3d (double x, double y, double z) {
-    }
+public class Vector2d {
     
 }

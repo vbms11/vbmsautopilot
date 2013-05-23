@@ -5,6 +5,7 @@
 package dev.vbms.autopilot.device;
 
 import dev.vbms.autopilot.device.AbstractGiro;
+import dev.vbms.autopilot.math.Vector3d;
 
 /**
  *
@@ -24,10 +25,7 @@ public class ArrayCompasGiro extends AbstractGiro {
     }
     
     public Vector3d getDownVector () {
-        
-        
-        
-        Vector3d
+        return new Vector3d();
     }
     
 }

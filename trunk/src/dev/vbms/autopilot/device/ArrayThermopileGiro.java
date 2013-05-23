@@ -4,6 +4,7 @@
  */
 package dev.vbms.autopilot.device;
 
+import dev.vbms.autopilot.math.Vector2d;
 import java.util.List;
 import java.util.Vector;
 
@@ -13,25 +14,21 @@ import java.util.Vector;
  */
 public class ArrayThermopileGiro {
     
-    class ThermopileArray {
-
-    }
-    
     class RasterDivider {
         
     }
     
-    List<ThermopileArray> themopileArrays;
+    List<AbstractThermopile> themopiles;
     
     void addThermopileArray () {
         
         // for each sensor try to find the down vector
-        for (ThermopileArray themopileArray : themopileArrays) {
+        for (AbstractThermopile themopile : themopiles) {
             
             // find the vector of the avarage score
             
-            int current recrusions = 1;
-            int[][] frame = themopileArray.getFrame();
+            int current_ecrusions = 1;
+            int[][] frame = themopile.getData();
             double avarageX = 0, avarageY = 0;
             int frameWidth = frame.length;
             int frameHeight = frame[0].length;
@@ -47,10 +44,10 @@ public class ArrayThermopileGiro {
                 }
             }
             avarageScore /= frameWidth * frameHeight;
-            
+            /*
             Vector2d avarageVector = new Vector2d(avarageX,avarageY);
             avarageVector.normalize();
-            
+            */
             // search with recrusive boxes
             
         }

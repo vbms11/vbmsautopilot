@@ -10,4 +10,16 @@ package dev.vbms.autopilot.sim;
  */
 public class Scene {
     
+    public void init () {
+        Terrain terrain = new Terrain();
+        terrain.init();
+        
+        
+        
+    }
+    
+    
+    
+    
+    
 }

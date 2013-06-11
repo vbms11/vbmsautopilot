@@ -10,4 +10,10 @@ package dev.vbms.autopilot.sim;
  */
 public class Sky {
     
+    public void init () {
+        
+        // sky
+        rootNode.attachChild(SkyFactory.createSky(assetManager, "Textures/sky/sky.jpg", false));
+
+    }
 }

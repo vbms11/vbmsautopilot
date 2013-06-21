@@ -1,17 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package dev.vbms.autopilot.sim.device;
 
-import dev.vbms.autopilot.device.*;
+import com.jme3.math.Vector2f;
 import java.util.List;
-import java.util.Vector;
 
-/**
- *
- * @author pcmobile
- */
 public class ArrayThermopileGiro {
     
     class ThermopileArray {
@@ -31,9 +22,9 @@ public class ArrayThermopileGiro {
             
             // find the vector of the avarage score
             
-            int current recrusions = 1;
-            int[][] frame = themopileArray.getFrame();
-            double avarageX = 0, avarageY = 0;
+            int current_recrusions = 1;
+            int[][] frame = null; //themopileArray.getFrame();
+            float avarageX = 0, avarageY = 0;
             int frameWidth = frame.length;
             int frameHeight = frame[0].length;
             double halfFrameHeight = frameHeight / 2.0f;
@@ -49,7 +40,7 @@ public class ArrayThermopileGiro {
             }
             avarageScore /= frameWidth * frameHeight;
             
-            Vector2d avarageVector = new Vector2d(avarageX,avarageY);
+            Vector2f avarageVector = new Vector2f(avarageX,avarageY);
             avarageVector.normalize();
             
             // search with recrusive boxes

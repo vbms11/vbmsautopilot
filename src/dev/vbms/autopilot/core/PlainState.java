@@ -34,10 +34,10 @@ public class PlainState {
         
     }
     
-    public PlainState getCurrentState (AbstractPlain plain, PlainState lastState = null) {
+    public PlainState getCurrentState (AbstractPlain plain, PlainState lastState) {
         PlainState plainState = new PlainState();
         plainState.timestamp = System.currentTimeMillis();
-        plainState.heading = plain.getCompass().getReading();
+        // plainState.heading = plain.getCompass().getReading();
         plainState.position = plain.getGps().getPosition();
         if (lastState == null) {
             plainState.velocity = new Vector3d(0.0f,0.0f,0.0f);
@@ -46,13 +46,17 @@ public class PlainState {
             plainState.roleSpeed = 0;
         } else {
             long timeStep = plainState.timestamp - lastState.timestamp;
-            Vector3d distance = plainState.sub(lastState.position);
-            plainState.speed = distance.length() * (1000 * 60 * 60 / timeStep);
+            // Vector3d distance = plainState.sub(lastState.position);
+            // plainState.speed = distance.length() * (1000 * 60 * 60 / timeStep);
         }
+        return plainState;
     }
     
-    public static PlainState getAvarageState (long pastTimeMilis = 100L) {
-        PlainState painState = new PlainState();
+    public static PlainState getAvarageState (Long pastTimeMilis) {
+        if (pastTimeMilis == null) {
+            pastTimeMilis = 100L;
+        }
+        PlainState plainState = new PlainState();
         Iterator<PlainState> itr_plainStateLog = plainStateLog.listIterator(plainStateLog.size()-1);
         do {
             
@@ -60,8 +64,6 @@ public class PlainState {
         } while (itr_plainStateLog.hasNext());
         return plainState;
     }
-    
-    
     
     public Heading getHeading() {
         return heading;

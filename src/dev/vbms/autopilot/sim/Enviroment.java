@@ -1,31 +1,30 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package dev.vbms.autopilot.sim;
 
-/**
- *
- * @author pcmobile
- */
-public class Enviroment {
+import com.jme3.app.SimpleApplication;
+import com.jme3.app.state.ScreenshotAppState;
+
+public class Enviroment extends SimpleApplication {
     
-    Terrain terrain;
-    Vehicle vehicle;
-    Water water;
-    Sky sky;
+    Scene scene;
+    
+    public Enviroment () {
+    }
+    
+    public Scene getScene () {
+        return scene;
+    }
+    
+    @Override
+    public void simpleInitApp () {
+        scene = new Scene();
+        scene.init(this);
+    }
     
     public void update (int stepsMillis) {
-        
+        scene.update(stepsMillis);
     }
     
     public void render () {
-        
-        Scene.clear();
-        
-        sky.render();
-        terrain.render();
-        water.render();
-        vehicle.render();
+        scene.render();
     }
 }

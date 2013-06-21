@@ -1,16 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package dev.vbms.autopilot.sim.device;
 
-import dev.vbms.autopilot.device.*;
+import com.jme3.math.Vector3f;
 import dev.vbms.autopilot.device.AbstractGiro;
 
-/**
- *
- * @author pcmobile
- */
 public class ArrayCompasGiro extends AbstractGiro {
     
     AbstractCompass xCompass;
@@ -24,11 +16,8 @@ public class ArrayCompasGiro extends AbstractGiro {
         return 0;
     }
     
-    public Vector3d getDownVector () {
-        
-        
-        
-        Vector3d
+    public Vector3f getDownVector () {
+        return null;
     }
     
 }

@@ -1,25 +1,33 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package dev.vbms.autopilot.sim;
 
-/**
- *
- * @author pcmobile
- */
+import com.jme3.asset.AssetManager;
+import com.jme3.math.FastMath;
+import com.jme3.math.Plane;
+import com.jme3.math.Quaternion;
+import com.jme3.math.Vector2f;
+import com.jme3.math.Vector3f;
+import com.jme3.renderer.queue.RenderQueue;
+import com.jme3.scene.Geometry;
+import com.jme3.scene.Node;
+import com.jme3.scene.shape.Quad;
+import com.jme3.water.SimpleWaterProcessor;
+
 public class Water {
     
-    public void init () {
+    public void init (Scene scene) {
+        
+        AssetManager assetManager = scene.getAassetManager();
+        Node rootNode = scene.getRootNode();
+        Enviroment env = scene.getEnviroment();
         
         // we create a water processor
         SimpleWaterProcessor waterProcessor = new SimpleWaterProcessor(assetManager);
         waterProcessor.setReflectionScene(rootNode);
-
+        
         // we set the water plane
         Vector3f waterLocation=new Vector3f(0,0,0);
         waterProcessor.setPlane(new Plane(Vector3f.UNIT_Y, waterLocation.dot(Vector3f.UNIT_Y)));
-        viewPort.addProcessor(waterProcessor);
+        env.getViewPort().addProcessor(waterProcessor);
 
         // we set wave properties
         waterProcessor.setWaterDepth(40);         // transparency of water
@@ -36,6 +44,6 @@ public class Water {
         water.setLocalTranslation(-200, -6, 250);
         water.setShadowMode(RenderQueue.ShadowMode.Receive);
         water.setMaterial(waterProcessor.getMaterial());
-        Scene.getRootNode().attachChild(water);
+        scene.getRootNode().attachChild(water);
     }
 }

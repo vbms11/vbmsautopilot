@@ -1,19 +1,16 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package dev.vbms.autopilot.sim;
 
-/**
- *
- * @author pcmobile
- */
+import com.jme3.asset.AssetManager;
+import com.jme3.scene.Node;
+import com.jme3.util.SkyFactory;
+
 public class Sky {
     
-    public void init () {
+    public void init (Scene scene) {
         
         // sky
-        rootNode.attachChild(SkyFactory.createSky(assetManager, "Textures/sky/sky.jpg", false));
-
+        Node rootNode = scene.getRootNode();
+        AssetManager assetManager = scene.getAassetManager();
+        rootNode.attachChild(SkyFactory.createSky(assetManager, "Textures/sky/sky.jpg", true));        
     }
 }

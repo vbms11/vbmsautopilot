@@ -74,11 +74,11 @@ public class Autopilot {
             boolean result = false;
             switch (type) {
                 case type_flyto:
-                    Position plainPosition = ;
+                    /*/Position plainPosition = ;
                     Vector2d offset = new Vector2d(position.longditude - plainPosition.longditude, position.latitude - plainPosition.latitude);
                     if (offset.getLength() <= radius) {
                         result = true;
-                    }
+                    }*/
                     break;
             }
             return result;
@@ -140,9 +140,9 @@ public class Autopilot {
                     break;
                 case state_takeoff_accelerate:
                     // regulate throttle rate
-                    if (plain.getMotorThrott() < plainConfig.maxTakeoffAccelerateThrottle) {
-                        plain.setMotorThrottle(plain.getMotorThrott() + (interval * plainConfig.takeoffThrottleRate));
-                    }
+                    //if (plain.getMotorThrott() < plainConfig.maxTakeoffAccelerateThrottle) {
+                    //    plain.setMotorThrottle(plain.getMotorThrott() + (interval * plainConfig.takeoffThrottleRate));
+                    //}
                     // regulate takeoff angle
                     break;
                 case state_takeoff_try_gain:
@@ -179,11 +179,11 @@ public class Autopilot {
                 case state_landing_estimate:
                 case state_landing_attempt:
                 case state_landing_abort:
-                    state = landing_prepear;
+                    //state = landing_prepear;
                     break;
                 case state_landing_success:
                     state = state_landed;
-                    phase = phase_grounded;
+                    //phase = phase_grounded;
                     break;
                 
             }
@@ -191,7 +191,7 @@ public class Autopilot {
             // estimate new position
             FlightSimulator simulator = new FlightSimulator();
             simulator.updateIntended();
-            simulator.getHorizontalAngel();
+            //simulator.getHorizontalAngel();
             
             // update flight controlles
             plain.setHorizontalValue(throttelSteps);

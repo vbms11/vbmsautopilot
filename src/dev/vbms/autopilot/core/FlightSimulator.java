@@ -34,7 +34,7 @@ public class FlightSimulator {
     int state = state_waiting;
     
     void updateIntended () {
-        
+        /*
         AbstractPlain plain = Context::getPlain();
         PlainState plainState = plain.getPlainState();
         
@@ -82,7 +82,7 @@ public class FlightSimulator {
         // if loosing height
         // check travel angle
         // check speed
-        
+        */
     }
     
     public Heading getIntendedHeading() {
@@ -188,7 +188,7 @@ public class FlightSimulator {
     public void setRolePosition(double rolePosition) {
         this.rolePosition = rolePosition;
     }
-    
+    /*
     double getRoleAngel () {
         return currentHeading.getRoleAngle(intendedHeading);
     }
@@ -204,4 +204,5 @@ public class FlightSimulator {
     double getThrottel () {
         return throttel;
     }
+    */
 }

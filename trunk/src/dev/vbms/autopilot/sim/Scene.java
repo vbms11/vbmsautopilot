@@ -1,6 +1,7 @@
 package dev.vbms.autopilot.sim;
 
 import com.jme3.scene.Node;
+import dev.vbms.autopilot.vehicle.VehicleNode;
 
 public class Scene {
     
@@ -10,6 +11,20 @@ public class Scene {
     Camera camera;
     Water water;
     Sky sky;
+    
+    VehicleNode character;
+    VehicleNode currentVehicle;
+    // RoadsManager
+    // VehicleManager
+    // BuildingsManager
+    
+    public VehicleNode getCharacter () {
+        return character;
+    }
+    
+    public Terrain getTerrain () {
+        return terrain;
+    }
     
     public Node getRootNode () {
         return rootNode;
@@ -35,6 +50,7 @@ public class Scene {
         
         water = new Water();
         water.init(enviroment);
+        
     }
     
     public void update (int stepsMillis) {

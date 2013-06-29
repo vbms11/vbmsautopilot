@@ -11,7 +11,7 @@ public class Sky {
         // sky
         Scene scene = enviroment.getScene();
         Node rootNode = scene.getRootNode();
-        AssetManager assetManager = enviroment.getAassetManager();
+        AssetManager assetManager = enviroment.getAssetManager();
         rootNode.attachChild(SkyFactory.createSky(assetManager, "res/tex/sky/Skysphere.jpg", true));        
     }
 }

@@ -19,17 +19,27 @@ import dev.vbms.autopilot.test.PhysicsHelper;
 public class CarVehicle extends VehicleNode implements ActionListener {
     
     private VehicleControl player;
-    private VehicleWheel fr, fl, br, bl;
-    private Node node_fr, node_fl, node_br, node_bl;
     private float wheelRadius;
     private float steeringValue = 0;
     private float accelerationValue = 0;
+    private float spawnHeight = 1;
+    
+    public CarVehicle () {
+    }
+    
+    public float getSpawnHeight () {
+        return spawnHeight;
+    }
+    
+    public void setPosition (Vector3f position) {
+        player.setPhysicsLocation(position);
+    }
     
     @Override
     public void init (Enviroment enviroment) {
         
-        float stiffness = 120.0f;//200=f1 car
-        float compValue = 0.2f; //(lower than damp!)
+        float stiffness = 120.0f; //200=f1 car
+        float compValue = 0.2f;   //(lower than damp!)
         float dampValue = 0.3f;
         final float mass = 400;
 
@@ -40,7 +50,7 @@ public class CarVehicle extends VehicleNode implements ActionListener {
         attachChild(carNode);
         Geometry chasis = PhysicsHelper.findGeom(carNode, "Car");
         
-        BoundingBox box = (BoundingBox) chasis.getModelBound();
+        BoundingBox box;
 
         //Create a hull collision shape for the chassis
         CollisionShape carHull = CollisionShapeFactory.createDynamicMeshShape(chasis);
@@ -94,45 +104,48 @@ public class CarVehicle extends VehicleNode implements ActionListener {
     
     @Override
     public void onAction(String binding, boolean value, float tpf) {
-        if (binding.equals("Lefts")) {
-            if (value) {
-                steeringValue += .5f;
-            } else {
-                steeringValue += -.5f;
-            }
-            player.steer(steeringValue);
-        } else if (binding.equals("Rights")) {
-            if (value) {
-                steeringValue += -.5f;
-            } else {
-                steeringValue += .5f;
-            }
-            player.steer(steeringValue);
-        } //note that our fancy car actually goes backwards..
-        else if (binding.equals("Ups")) {
-            if (value) {
-                accelerationValue -= 800;
-            } else {
-                accelerationValue += 800;
-            }
-            player.accelerate(accelerationValue);
-            player.setCollisionShape(CollisionShapeFactory.createDynamicMeshShape(PhysicsHelper.findGeom(this, "Car")));
-        } else if (binding.equals("Downs")) {
-            if (value) {
-                player.brake(40f);
-            } else {
-                player.brake(0f);
-            }
-        } else if (binding.equals("Reset")) {
-            if (value) {
-                System.out.println("Reset");
-                player.setPhysicsLocation(Vector3f.ZERO);
-                player.setPhysicsRotation(new Matrix3f());
-                player.setLinearVelocity(Vector3f.ZERO);
-                player.setAngularVelocity(Vector3f.ZERO);
-                player.resetSuspension();
-            } else {
-            }
+        switch (binding) {
+            case "left":
+                if (value) {
+                    steeringValue += 0.5f;
+                } else {
+                    steeringValue += -0.5f;
+                }
+                player.steer(steeringValue);
+                break;
+            case "right":
+                if (value) {
+                    steeringValue += -0.5f;
+                } else {
+                    steeringValue += 0.5f;
+                }
+                player.steer(steeringValue);
+                break;
+            case "up":
+                if (value) {
+                    accelerationValue -= 800;
+                } else {
+                    accelerationValue += 800;
+                }
+                player.accelerate(accelerationValue);
+                player.setCollisionShape(CollisionShapeFactory.createDynamicMeshShape(PhysicsHelper.findGeom(this, "Car")));
+                break;
+            case "down":
+                if (value) {
+                    player.brake(40f);
+                } else {
+                    player.brake(0f);
+                }
+                break;
+            case "reset":
+                if (value) {
+                    // player.setPhysicsLocation(Vector3f.ZERO);
+                    player.setPhysicsRotation(new Matrix3f());
+                    player.setLinearVelocity(Vector3f.ZERO);
+                    player.setAngularVelocity(Vector3f.ZERO);
+                    player.resetSuspension();
+                    break;
+                }
         }
     }
     

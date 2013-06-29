@@ -24,7 +24,7 @@ public class Terrain {
     
     Material mat_terrain;
     float grassScale = 1;
-    float dirtScale = 1;
+    float sandScale = 1;
     float rockScale = 1;
     FractalSum base;
     PerturbFilter perturb;
@@ -46,10 +46,10 @@ public class Terrain {
         mat_terrain.setVector3("region1", new Vector3f(15, 200, grassScale));
         
         // DIRT texture
-        Texture dirt = assetManager.loadTexture("res/tex/terrain/dirt.jpg");
-        dirt.setWrap(Texture.WrapMode.Repeat);
-        this.mat_terrain.setTexture("region2ColorMap", dirt);
-        this.mat_terrain.setVector3("region2", new Vector3f(0, 20, dirtScale));
+        Texture sand = assetManager.loadTexture("res/tex/terrain/sand.jpg");
+        sand.setWrap(Texture.WrapMode.Repeat);
+        this.mat_terrain.setTexture("region2ColorMap", sand);
+        this.mat_terrain.setVector3("region2", new Vector3f(0, 20, sandScale));
         
         // ROCK texture
         Texture rock = assetManager.loadTexture("res/tex/terrain/rock.jpg");
@@ -96,7 +96,7 @@ public class Terrain {
         
         ground.addPreFilter(iterate);
         
-        terrain = new TerrainGrid("terrain", 33, 1025, new FractalTileLoader(ground, 256f));
+        terrain = new TerrainGrid("terrain", 33, 1025, new SceneTileLoader(ground, 256f));
         terrain.setMaterial(mat_terrain);
         terrain.setLocalTranslation(0, 0, 0);
         terrain.setLocalScale(2f, 2f, 2f);

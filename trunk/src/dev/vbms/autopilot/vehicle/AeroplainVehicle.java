@@ -6,9 +6,10 @@ import com.jme3.scene.Geometry;
 import com.jme3.scene.Mesh;
 import com.jme3.scene.VertexBuffer;
 import com.jme3.scene.shape.Box;
+import dev.vbms.autopilot.sim.Enviroment;
 import dev.vbms.autopilot.sim.Scene;
 
-public class Aeroplain {
+public class AeroplainVehicle extends VehicleNode {
     
     float wingHeight = 0.01f, 
            wingLength = 2.0f, 
@@ -22,10 +23,7 @@ public class Aeroplain {
            hullHeight = 0.1f,
            hullLength = 2.0f;
     
-    
     Box wingBox, tailBox, rudderBox, hullBox;
-    
-    
     
     public Mesh getMesh () {
         Mesh mesh = new Mesh();
@@ -46,19 +44,21 @@ public class Aeroplain {
         return mesh;
     }
     
-    public void init (Scene scene) {
-        
+    public void init (Enviroment enviroment) {
+        Scene scene = enviroment.getScene();
         Mesh mesh = getMesh();
         Geometry geo = new Geometry("OurMesh", mesh);
-        Material mat = new Material(scene.getAassetManager(),"Common/MatDefs/Misc/Unshaded.j3md");
+        Material mat = new Material(enviroment.getAssetManager(),"Common/MatDefs/Misc/Unshaded.j3md");
         mat.setColor("Color", ColorRGBA.Blue);
         geo.setMaterial(mat);
         scene.getRootNode().attachChild(geo);
-        
     }
     
     public void render () {
         
     }
     
+    public void onAction (String name, float tfp) {
+        
+    }
 }

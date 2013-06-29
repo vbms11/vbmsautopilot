@@ -17,7 +17,7 @@ public class Water {
     public void init (Enviroment enviroment) {
         
         Scene scene = enviroment.getScene();
-        AssetManager assetManager = enviroment.getAassetManager();
+        AssetManager assetManager = enviroment.getAssetManager();
         Node rootNode = scene.getRootNode();
         
         // we create a water processor

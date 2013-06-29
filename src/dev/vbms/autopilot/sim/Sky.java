@@ -6,11 +6,12 @@ import com.jme3.util.SkyFactory;
 
 public class Sky {
     
-    public void init (Scene scene) {
+    public void init (Enviroment enviroment) {
         
         // sky
+        Scene scene = enviroment.getScene();
         Node rootNode = scene.getRootNode();
-        AssetManager assetManager = scene.getAassetManager();
-        rootNode.attachChild(SkyFactory.createSky(assetManager, "Textures/sky/sky.jpg", true));        
+        AssetManager assetManager = enviroment.getAassetManager();
+        rootNode.attachChild(SkyFactory.createSky(assetManager, "res/tex/sky/Skysphere.jpg", true));        
     }
 }

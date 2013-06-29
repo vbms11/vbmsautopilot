@@ -8,12 +8,24 @@ import java.awt.FlowLayout;
 
 public class JMonkeyPanel extends javax.swing.JPanel {
     
-    int width = 400;
-    int height = 400;
+    Application main;
+    
+    public void resizeRenderArea (Dimension dimension) {
+        AppSettings settings = new AppSettings(true);
+        settings.setWidth((int)dimension.getWidth());
+        settings.setHeight((int)dimension.getHeight());
+        main.setSettings(settings);
+        JmeCanvasContext ctx = (JmeCanvasContext) main.getContext();
+        ctx.getCanvas().setPreferredSize(dimension);
+    }
     
     public void run (Application main) {
         // create new JME appsettings
+        this.main = main;
         AppSettings settings = new AppSettings(true);
+        Dimension dimension = this.getParent().getSize();
+        int width = (int) dimension.getWidth();
+        int height = (int) dimension.getHeight();
         settings.setWidth(width);
         settings.setHeight(height);
         // create new canvas application
@@ -21,17 +33,13 @@ public class JMonkeyPanel extends javax.swing.JPanel {
         main.createCanvas();
         JmeCanvasContext ctx = (JmeCanvasContext) main.getContext();
         ctx.setSystemListener(main);
-        Dimension dim = new Dimension(width, height);
-        ctx.getCanvas().setPreferredSize(dim);
+        ctx.getCanvas().setPreferredSize(dimension);
         setLayout(new FlowLayout());
         add(ctx.getCanvas());
         // start the application
         main.startCanvas();
     }
-
-    /**
-     * Creates new form JMonkeyPanel
-     */
+    
     public JMonkeyPanel() {
         // initComponents();
     }
@@ -45,6 +53,12 @@ public class JMonkeyPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                formComponentResized(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -56,6 +70,11 @@ public class JMonkeyPanel extends javax.swing.JPanel {
             .addGap(0, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
+        resizeRenderArea(getSize());
+    }//GEN-LAST:event_formComponentResized
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }

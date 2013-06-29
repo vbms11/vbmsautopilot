@@ -1,8 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-package dev.vbms.autopilot.sim;
+package dev.vbms.autopilot.vehicle;
 
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
@@ -10,11 +6,8 @@ import com.jme3.scene.Geometry;
 import com.jme3.scene.Mesh;
 import com.jme3.scene.VertexBuffer;
 import com.jme3.scene.shape.Box;
+import dev.vbms.autopilot.sim.Scene;
 
-/**
- *
- * @author pcmobile
- */
 public class Aeroplain {
     
     float wingHeight = 0.01f, 

@@ -4,20 +4,23 @@
  */
 package dev.vbms.autopilot.gui;
 
-import dev.vbms.autopilot.sim.Aeroplain;
+import dev.vbms.autopilot.vehicle.Aeroplain;
 import dev.vbms.autopilot.sim.cad.FlightView;
 
 /**
  *
  * @author pcmobile
  */
-public class FlightPanel extends javax.swing.JPanel {
+public class DesignPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form FlightPanel
      */
-    public FlightPanel() {
+    public DesignPanel() {
         initComponents();
+    }
+    
+    public void initViews () {
         Aeroplain selectedPlain = new Aeroplain();
         flightPanel.run(new FlightView());
     }
@@ -74,7 +77,7 @@ public class FlightPanel extends javax.swing.JPanel {
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSlider2, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+            .addComponent(jSlider2, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout designPanelLayout = new javax.swing.GroupLayout(designPanel);
@@ -85,7 +88,7 @@ public class FlightPanel extends javax.swing.JPanel {
         );
         designPanelLayout.setVerticalGroup(
             designPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 248, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -110,6 +113,12 @@ public class FlightPanel extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Design", jPanel1);
 
+        flightPanel.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                flightPanelComponentResized(evt);
+            }
+        });
+
         javax.swing.GroupLayout flightPanelLayout = new javax.swing.GroupLayout(flightPanel);
         flightPanel.setLayout(flightPanelLayout);
         flightPanelLayout.setHorizontalGroup(
@@ -118,7 +127,7 @@ public class FlightPanel extends javax.swing.JPanel {
         );
         flightPanelLayout.setVerticalGroup(
             flightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 290, Short.MAX_VALUE)
+            .addGap(0, 279, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -142,7 +151,7 @@ public class FlightPanel extends javax.swing.JPanel {
         );
         simulationPanelLayout.setVerticalGroup(
             simulationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 290, Short.MAX_VALUE)
+            .addGap(0, 279, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -177,11 +186,11 @@ public class FlightPanel extends javax.swing.JPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Attribs", jPanel2);
@@ -190,11 +199,11 @@ public class FlightPanel extends javax.swing.JPanel {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 617, Short.MAX_VALUE)
+            .addGap(0, 127, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 290, Short.MAX_VALUE)
+            .addGap(0, 279, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Statistics", jPanel3);
@@ -205,13 +214,18 @@ public class FlightPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void flightPanelComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_flightPanelComponentResized
+        
+    }//GEN-LAST:event_flightPanelComponentResized
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private dev.vbms.autopilot.gui.JMonkeyPanel designPanel;
     private dev.vbms.autopilot.gui.JMonkeyPanel flightPanel;

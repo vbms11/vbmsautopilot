@@ -3,51 +3,16 @@ package dev.vbms.autopilot.vehicle;
 import com.jme3.animation.AnimChannel;
 import com.jme3.animation.AnimControl;
 import com.jme3.animation.AnimEventListener;
-import com.jme3.animation.LoopMode;
-import com.jme3.app.SimpleApplication;
 import com.jme3.asset.AssetManager;
-import com.jme3.bullet.BulletAppState;
-import com.jme3.bullet.PhysicsSpace;
-import com.jme3.bullet.collision.PhysicsCollisionEvent;
-import com.jme3.bullet.collision.PhysicsCollisionListener;
 import com.jme3.bullet.collision.shapes.CapsuleCollisionShape;
-import com.jme3.bullet.collision.shapes.SphereCollisionShape;
 import com.jme3.bullet.control.CharacterControl;
-import com.jme3.bullet.control.RigidBodyControl;
-import com.jme3.bullet.util.CollisionShapeFactory;
-import com.jme3.effect.ParticleEmitter;
-import com.jme3.effect.ParticleMesh.Type;
-import com.jme3.effect.shapes.EmitterSphereShape;
 import com.jme3.input.ChaseCamera;
-import com.jme3.input.KeyInput;
 import com.jme3.input.controls.ActionListener;
-import com.jme3.input.controls.KeyTrigger;
-import com.jme3.light.DirectionalLight;
-import com.jme3.material.Material;
-import com.jme3.math.ColorRGBA;
-import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
-import com.jme3.post.FilterPostProcessor;
-import com.jme3.post.filters.BloomFilter;
 import com.jme3.renderer.Camera;
-import com.jme3.renderer.queue.RenderQueue.ShadowMode;
-import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
-import com.jme3.scene.Spatial;
-import com.jme3.scene.shape.Box;
-import com.jme3.scene.shape.Sphere;
-import com.jme3.scene.shape.Sphere.TextureMode;
-import com.jme3.terrain.geomipmap.TerrainLodControl;
-import com.jme3.terrain.geomipmap.TerrainQuad;
-import com.jme3.terrain.heightmap.AbstractHeightMap;
-import com.jme3.terrain.heightmap.ImageBasedHeightMap;
-import com.jme3.texture.Texture;
-import com.jme3.texture.Texture.WrapMode;
-import com.jme3.util.SkyFactory;
 import dev.vbms.autopilot.sim.Enviroment;
 import dev.vbms.autopilot.sim.Scene;
-import java.util.ArrayList;
-import java.util.List;
 
 public class CharacterVehicle extends VehicleNode implements ActionListener, AnimEventListener {
 
@@ -66,7 +31,7 @@ public class CharacterVehicle extends VehicleNode implements ActionListener, Ani
     @Override
     public void init (Enviroment enviroment) {
         
-        AssetManager assetManager = enviroment.getAassetManager();
+        AssetManager assetManager = enviroment.getAssetManager();
         Scene scene = enviroment.getScene();
         
         CapsuleCollisionShape capsule = new CapsuleCollisionShape(3f, 4f);
@@ -90,6 +55,9 @@ public class CharacterVehicle extends VehicleNode implements ActionListener, Ani
     
     @Override
     public void onUpdate(float tpf) {
+        
+        Enviroment enviroment = Enviroment.getEnviroment();
+        Camera cam = enviroment.getCamera();
         
         Vector3f camDir = cam.getDirection().clone().multLocal(0.1f);
         Vector3f camLeft = cam.getLeft().clone().multLocal(0.1f);

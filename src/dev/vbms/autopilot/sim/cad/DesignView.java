@@ -10,14 +10,14 @@ import com.jme3.scene.Geometry;
 import com.jme3.scene.shape.Box;
 import com.jme3.scene.shape.Quad;
 import com.jme3.util.SkyFactory;
-import dev.vbms.autopilot.vehicle.Aeroplain;
+import dev.vbms.autopilot.vehicle.AeroplainVehicle;
 
 public class DesignView extends SimpleApplication {
     
     Material mat;
-    Aeroplain aeroplain;
+    AeroplainVehicle aeroplain;
     
-    public DesignView (Aeroplain aeroplain) {
+    public DesignView (AeroplainVehicle aeroplain) {
         this.aeroplain = aeroplain;
     }
     

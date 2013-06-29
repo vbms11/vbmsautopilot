@@ -4,7 +4,7 @@
  */
 package dev.vbms.autopilot.gui;
 
-import dev.vbms.autopilot.vehicle.Aeroplain;
+import dev.vbms.autopilot.vehicle.AeroplainVehicle;
 import dev.vbms.autopilot.sim.cad.FlightView;
 
 /**
@@ -21,7 +21,7 @@ public class DesignPanel extends javax.swing.JPanel {
     }
     
     public void initViews () {
-        Aeroplain selectedPlain = new Aeroplain();
+        AeroplainVehicle selectedPlain = new AeroplainVehicle();
         flightPanel.run(new FlightView());
     }
 

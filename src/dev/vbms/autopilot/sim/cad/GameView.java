@@ -1,13 +1,16 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package dev.vbms.autopilot.sim.cad;
 
-/**
- *
- * @author pcmobile
- */
-public class GameView {
+import dev.vbms.autopilot.sim.Enviroment;
+
+public class GameView extends Enviroment {
+    
+    public GameView () {
+        
+        super();
+        Enviroment.enviroment = (Enviroment) this;
+        
+        
+        
+    }
     
 }

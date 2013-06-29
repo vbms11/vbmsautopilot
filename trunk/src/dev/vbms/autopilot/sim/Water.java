@@ -14,11 +14,11 @@ import com.jme3.water.SimpleWaterProcessor;
 
 public class Water {
     
-    public void init (Scene scene) {
+    public void init (Enviroment enviroment) {
         
-        AssetManager assetManager = scene.getAassetManager();
+        Scene scene = enviroment.getScene();
+        AssetManager assetManager = enviroment.getAassetManager();
         Node rootNode = scene.getRootNode();
-        Enviroment env = scene.getEnviroment();
         
         // we create a water processor
         SimpleWaterProcessor waterProcessor = new SimpleWaterProcessor(assetManager);
@@ -27,7 +27,7 @@ public class Water {
         // we set the water plane
         Vector3f waterLocation=new Vector3f(0,0,0);
         waterProcessor.setPlane(new Plane(Vector3f.UNIT_Y, waterLocation.dot(Vector3f.UNIT_Y)));
-        env.getViewPort().addProcessor(waterProcessor);
+        enviroment.getViewPort().addProcessor(waterProcessor);
 
         // we set wave properties
         waterProcessor.setWaterDepth(40);         // transparency of water
@@ -41,7 +41,7 @@ public class Water {
         // we create the water geometry from the quad
         Geometry water = new Geometry("water", quad);
         water.setLocalRotation(new Quaternion().fromAngleAxis(-FastMath.HALF_PI, Vector3f.UNIT_X));
-        water.setLocalTranslation(-200, -6, 250);
+        water.setLocalTranslation(0, 0, 0);
         water.setShadowMode(RenderQueue.ShadowMode.Receive);
         water.setMaterial(waterProcessor.getMaterial());
         scene.getRootNode().attachChild(water);

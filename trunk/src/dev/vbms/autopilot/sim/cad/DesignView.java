@@ -10,7 +10,7 @@ import com.jme3.scene.Geometry;
 import com.jme3.scene.shape.Box;
 import com.jme3.scene.shape.Quad;
 import com.jme3.util.SkyFactory;
-import dev.vbms.autopilot.sim.Aeroplain;
+import dev.vbms.autopilot.vehicle.Aeroplain;
 
 public class DesignView extends SimpleApplication {
     

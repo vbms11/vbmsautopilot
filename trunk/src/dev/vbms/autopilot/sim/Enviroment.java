@@ -47,8 +47,8 @@ public class Enviroment extends SimpleApplication implements ActionListener {
         
         assetManager = getAssetManager();
         
-        AppState state = new BulletAppState();
-        getStateManager().attach(state);
+        bulletAppState = new BulletAppState();
+        getStateManager().attach(bulletAppState);
         
         setupKeys();
         
@@ -112,7 +112,7 @@ public class Enviroment extends SimpleApplication implements ActionListener {
                 }
                 break;
             default:
-                currentVehicle.onAction(binding, value, tpf);
+                //currentVehicle.onAction(binding, value, tpf);
         }
     }
     

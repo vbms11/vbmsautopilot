@@ -236,12 +236,11 @@ public class TestBetterCharacter extends SimpleApplication implements ActionList
         matRock.setTexture("NormalMap", normalMap0);
         matRock.setTexture("NormalMap_1", normalMap2);
         matRock.setTexture("NormalMap_2", normalMap2);
-
+        
         AbstractHeightMap heightmap = null;
         try {
             heightmap = new ImageBasedHeightMap(heightMapImage.getImage(), 0.25f);
             heightmap.load();
-
         } catch (Exception e) {
             e.printStackTrace();
         }
